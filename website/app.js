@@ -14,22 +14,22 @@ const feelData =document.getElementById("feelings").value;
 
 getTemp(Zip)
 .then(function (data){
-if(data){
- 
 
-  const Objectweather={newDate,city,temp,description,feelData};
-  //console.log(date);
+
+  const Objectweather={date:newDate,temp:data.main.temp,city:data.name,weather:data.weather[0].description,feelData};
+  console.log(Objectweather);
   
-    Pdata('/addDate', Objectweather);
+  Pdata('/addDate', Objectweather);
+}).then(function(NewReturn){
     updateUI();
-  
+
    
 })
 };
 
 const getTemp = async (Zip)=>{
-  try {
   const res = await fetch(baseURL+Zip+apikey);
+  try {
    const data = await res.json();
       console.log(data);
       return data;
@@ -64,8 +64,10 @@ const updateUI = async () => {
   const res = await fetch('/all');
   try{
     const allData = await res.json();
-    document.getElementById('date').innerHTML = allData.newDate;
+    document.getElementById('date').innerHTML = allData.Date
     document.getElementById('temp').innerHTML = allData.temp;
+    document.getElementById('city').innerHTML = allData.city;
+    document.getElementById('description').innerHTML = allData.weather;
     document.getElementById('content').innerHTML = allData.feelData;
 
   }catch(error){
