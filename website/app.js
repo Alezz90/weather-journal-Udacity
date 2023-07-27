@@ -15,15 +15,14 @@ const feelData =document.getElementById("feelings").value;
 getTemp(Zip)
 .then(function (data){
 if(data){
-  const{
-    main:{temp}, name:city, weather:[{description}],}=data;
+ 
 
   const Objectweather={newDate,city,temp,description,feelData};
   //console.log(date);
   
     Pdata('/addDate', Objectweather);
     updateUI();
-  }
+  
    
 })
 };
