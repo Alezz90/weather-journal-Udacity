@@ -54,7 +54,7 @@ const Pdata= async (url = "", Objectweather={})=>{
   try{
     const NewReturn = await res.json();
     console.log(NewReturn);
-    return DL;
+    return NewReturn;
   }catch(error){
     console.log(error);
   }
